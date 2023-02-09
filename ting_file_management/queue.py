@@ -12,9 +12,11 @@ class Queue(AbstractQueue):
         self.data.append(value)
 
     def dequeue(self):
-        self.data.pop(0)
+        if len(self) < 1:
+            return None
+        return self.data.pop(0)
 
     def search(self, index):
-        if (index < 0 or index > len(self.data)):
+        if (0 <= index < len(self.data)):
             return self.data[index]
-        raise IndexError('Invalid index')
+        raise IndexError("Invalid index")
